@@ -1,0 +1,846 @@
+﻿<!DOCTYPE html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link type="text/css" rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet" type="text/css" />
+<link href="//fonts.googleapis.com/css?family=Abril+Fatface|Amatic+SC:700|Anton|Bevan|Cabin+Sketch:700|Chelsea+Market|Comfortaa:400,700|Gloria+Hallelujah|Lobster|Monoton|Open+Sans:400,700|Permanent+Marker|Philosopher|Poiret+One|Shrikhand|Special+Elite" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumpenscript.css">
+<link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumbrushscript.css">
+<link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanummyeongjo.css">
+<link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/nanumgothic.css">
+<link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/earlyaccess/jejugothic.css">
+
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.ui.ruler.css" />
+<link rel='stylesheet' type="text/css" href='css/colorpicker.css' />
+<link rel='stylesheet' type="text/css" href='css/jqtree.css' />
+<link rel='stylesheet' type="text/css" href='css/jquery.svg.css' />
+<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css">
+
+
+<link rel="stylesheet" type="text/css" href="css/A3Maker.css" />
+<link rel="stylesheet" type="text/css" href="css/A3Maker_config_window.css" />
+
+<script type="text/javascript" src="plugin/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="plugin/jquery.svg.min.js"></script>
+<script type="text/javascript" src="plugin/jquery.form.js"></script>
+<script type="text/javascript" src='plugin/tree.jquery.js'></script>
+<script type="text/javascript" src="plugin/jquery-ui.js"></script>
+<script type="text/javascript" src="plugin/jquery.ui.ruler.js"></script>
+<script type="text/javascript" src='plugin/colorpicker.js'></script>
+<script type="text/javascript" src='plugin/jstree.min.js'></script>
+<script type="text/javascript" src='plugin/jquery.mCustomScrollbar.concat.min.js'></script>
+<script type="text/javascript" src='plugin/raphael.js'></script>
+<script type="text/javascript" src='plugin/fullscreen.js'></script>
+
+<script type="text/javascript" src="js/A3Maker_core.js"></script>
+<script type="text/javascript" src="js/A3Maker_html.js"></script>
+<script type="text/javascript" src="js/A3Maker_util.js"></script>
+<script type="text/javascript" src="js/A3Maker_clipboard.js"></script>
+<script type="text/javascript" src="js/A3Maker_config.js"></script>
+<script type="text/javascript" src="js/A3Maker_context.js"></script>
+<script type="text/javascript" src="js/A3Maker_project.js"></script>
+<script type="text/javascript" src="js/A3Maker_page.js"></script>
+<script type="text/javascript" src="js/A3Maker_class.js"></script>
+<script type="text/javascript" src="js/A3Maker_ns.js"></script>
+<script type="text/javascript" src="js/A3Maker_controller.js"></script>
+<script type="text/javascript" src="js/A3Maker_component.js"></script>
+<script type="text/javascript" src="js/A3Maker_multiselection.js"></script>
+<script type="text/javascript" src="js/A3Maker_canvas.js"></script>
+<script type="text/javascript" src="js/A3Maker_validation.js"></script>
+<script type="text/javascript" src="js/A3Maker_preview.js"></script>
+<script type="text/javascript" src="js/A3Maker_page_window.js"></script>
+<script type="text/javascript" src="js/A3Maker_clipart.js"></script>
+<script type="text/javascript" src="js/A3Maker_project_window.js"></script>
+<script type="text/javascript" src="js/A3Maker_property_window.js"></script>
+<script type="text/javascript" src="js/A3Maker_order_window.js"></script>
+<script type="text/javascript" src="js/A3Maker_resource.js"></script>
+<script type="text/javascript" src="js/A3Maker_api.js"></script>
+<script type="text/javascript" src="js/A3Maker_draw.js"></script>
+<script type="text/javascript" src="js/A3Maker_statusbar.js"></script>
+<script type="text/javascript" src="js/A3Maker_sidebar.js"></script>
+<script type="text/javascript" src="js/A3Maker_settings_window.js"></script>
+<script type="text/javascript" src="js/A3Maker_search_window.js"></script>
+<script type="text/javascript" src="js/A3Maker_code_window.js"></script>
+
+<link rel="stylesheet" href="plugin/codemirror/lib/codemirror.css">
+<link rel="stylesheet" href="plugin/codemirror/theme/ambiance.css">
+<link rel="stylesheet" href="plugin/codemirror/addon/scroll/simplescrollbars.css">
+<script src="plugin/codemirror/lib/codemirror.js" type="text/javascript" charset="utf-8"></script>
+<script src="plugin/codemirror/mode/javascript/javascript.js" type="text/javascript" charset="utf-8"></script>
+<script src="plugin/codemirror/addon/selection/active-line.js" type="text/javascript" charset="utf-8"></script>
+<script src="plugin/codemirror/addon/edit/matchbrackets.js" type="text/javascript" charset="utf-8"></script>
+<script src="plugin/codemirror/addon/scroll/simplescrollbars.js" type="text/javascript" charset="utf-8"></script>
+
+<style>
+	#slider_handle { width: 2em; height: 1.6em; top: 50%; margin-top: -.8em; text-align: center; line-height: 1.6em; }
+  .ui-tooltip, .arrow:after { background: black; border: 2px solid white; }
+  .ui-tooltip { padding: 6px 20px; color: white; border-radius: 5px; font: normal 11px "Gulim", Sans-Serif; text-transform: uppercase; box-shadow: 0 0 7px black; }
+  .arrow { width: 70px; height: 16px; overflow: hidden; position: absolute; left: 50%; margin-left: -35px; bottom: -16px; }
+  .arrow.top { top: -16px; bottom: auto; }
+  .arrow.left { left: 20%; }
+  .arrow:after { content: ""; position: absolute; left: 20px; top: -20px; width: 25px; height: 25px; box-shadow: 6px 5px 9px -9px black; -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg); transform: rotate(45deg); }
+  .arrow.top:after { bottom: -20px; top: auto; }
+</style>
+<script>
+	$(document).ready(function() {
+		A3Maker.init();
+	});
+</script>
+<title>EPU3 Editor</title>
+</head>
+<body>
+	<!-- 상단 -->
+	<div class ="A3Maker_container">
+	<div class="header">
+		<!--상단 컬러바 -->
+		<div class="heaer_colorbar">
+			<!--
+			<a class ="logo_uchef" href ="javascript: void(0)"> 
+	      <img  src="http://www.uchef.co.kr/kor/img/making/mypage_logo.png" />
+	      <script>
+	      	$('.logo_uchef').click(function(event){
+	      		event.stopPropagation();
+	      		event.preventDefault();
+	      		location.href = location.protocol + '//' +location.host; 
+	      	});
+	      	---->
+				<div class="btn btn_back"> <a href="javascript:history.go(-1)"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</a> </div>
+				<div class="btn btn_config btn_toolbar"><i class="fa fa-cog" aria-hidden="true"></i><a href="#">Settings</a> </div>
+				<div class="btn btn_preview btn_toolbar"><i class="fa fa-desktop" aria-hidden="true"></i><a href="">Preview</a> </div>
+				<!--  
+				<div class="btn btn_full_screen btn_toolbar"><i class="fa fa-columns" aria-hidden="true"></i><a href="javacript:void(0)">전체화면</a> </div>
+				-->
+				<div class="btn btn_save btn_toolbar"><i class="fa fa-floppy-o" aria-hidden="true"></i><a href="javascript:void(0)">Save</a> </div>
+				<div class="btn btn_export btn_toolbar"><i class="fa fa-download" aria-hidden="true"></i><a id="exportProject">Export</a> </div>
+				<div class="btn btn_import btn_toolbar"><i class="fa fa-upload" aria-hidden="true"></i><a id="importProject">Import</a> </div>
+				<img class="btn btn_create_project ajax_top_loading" title="" src="images/ajax_top_loading.svg" /> 
+				<div style='display: none' class="btn btn_create_project"><i class="fa fa-product-hunt" aria-hidden="true"></i><a href="javacript:void(0)">Create Project</a></div>
+			</div>
+			<!--상단 흰색바 -->
+			<div class="header_bottom">
+				<div class="txt_project">
+					<i class="fa fa-file-text fa-lg" aria-hidden="true"></i>&nbsp; 
+					<span id='project_name'></span>&nbsp; <span id='project_real_zoom'></span>
+				</div>
+				<div class="attributes_center">
+				<!-- 상단 좌표 표시 제거 
+	          <div  style ="width: 50px" class="xtitle">X : <span class ="top_x_pos"></span></div>
+	          <div style ="width: 50px" class="ytitle">Y : <span class ="top_y_pos"></span></div>
+	           -->
+				<div class="zoomset">
+					<div class="zoomout"></div>
+					<input readonly class="zoomvalue" value="100%" />
+					<div class="zoomin"></div>
+				</div>
+				<div class="snaptitle">Snap</div>
+				<div class="snapbox">
+					<select id="snap_select" class ="field_title">
+						<option value="1">1</option>
+						<option value="5">5</option>
+						<option value="10">10</option>
+						<option value="15">15</option>
+						<option value="20">20</option>
+						<option value="25">25</option>
+						<option value="30">30</option>
+						<option value="35">35</option>
+						<option value="40">40</option>
+						<option value="45">45</option>
+						<option value="50">50</option>
+						<option value="55">55</option>
+						<option value="60">60</option>
+						<option value="70">70</option>
+						<option value="80">80</option>
+						<option value="90">90</option>
+						<option value="100">100</option>
+					</select>
+				</div>
+				<!--align -->
+				<ul class="aligntoolbar">
+					<li class="btn-tool align btn-alignleft" title="Align left" data-action="left-most"></li>
+					<li class="btn-tool align btn-alignright" title="Align right" data-action="right-most"></li>
+					<li class="btn-tool align btn-aligntop" title="Align top" data-action="top-most"></li>
+					<li class="btn-tool align btn-alignbottom" title="Align bottom" data-action="bottom-most"></li>
+					<!--<li class="btn-aligncenter" title="Align center"></li>-->
+					<!--<li class="btn-alignmiddle" title="Align middle"></li>-->
+					<li class="btn-tool align btn-align-h-offset btn-spaceouthorizontally" title="Distribute horizontal offset" data-action="align-h-offset"></li>
+					<li class="btn-tool align btn-align-v-offset btn-spaceoutvertically" title="Distribute vertical offset" data-action="align-v-offset"></li>
+					<li class="btn-tool align btn-fill" title="fill" data-action="fill"></li>
+				</ul>
+				</div>
+			</div>
+	</div>
+	<!--좌측 -->
+	<div class="left_menu_container">
+		<!----- 트리메뉴 ---->
+		<div class="tree-menus">
+			<div class="tree-menu-btns" style ="display:none">
+				<div class="btn btn_addpage" style="cursor: pointer">
+					<a href="javascript:void(0);"><i class="fa fa-plus" aria-hidden="true"></i> 폐이지</a>
+				</div>
+			<!-- 
+	       <div class="btn_sbutton btn-tree-expand">
+	           <a href="javascript:void(0)"><i class="fa fa-sort-desc fa-2x" aria-hidden="true"></i><i class="fa fa-sort-asc fa-2x" aria-hidden="true" style="display:none;"></i></a>
+	       </div>
+	        -->
+			</div>
+			<div id="thumbnailMenuArea">
+				<div id="thumbnailMenu">
+					<div id="search_container" class="scl-search super-search super-search--expanded"  style ="display:none">
+						<div class="search_icon ui_button" ></div>
+						<div class="super-search__expanded">
+							<input id="search_filter"   class="search_filter" type="text" placeholder="검색">
+							<div id="search_close"  class="search_close ui_button"> </div>
+						</div>
+					</div>
+					<div id ="addpage" class="addpage ui_button column ui_component" title="페이지 추가" >
+						<a class="tab_order"><span></span></a>
+					</div>
+					<div id ="searchBtn" class="searchBtn ui_button column ui_component" title="검색" >
+						<a class="tab_order" ><span ></span></a>
+					</div>
+					<div id ="listview" class="listview ui_button column ui_component" title="리스트 보기" >
+						<a class="tab_order" ><span ></span></a>
+					</div>
+					<div id ="thumbnail_view" class="thumbnail_view ui_button column ui_component"  title="개요 보기" >
+						<a class="tab_order" ><span></span></a>
+					</div>
+					<!--  
+					<div  class="deleteSlide ui_button column ui_component" title="슬라이드 삭제" >
+						<a class="tab_order" ><span></span></a>
+					</div>
+					-->
+				</div>
+			</div>
+			<div id="page_sidebar" ></div>
+			<div id="page_sidebar_2" style ="display:none">
+			</div>
+		</div>
+		
+		<!-- 메뉴버튼 -->
+		<div class="menu_btns">
+			<button id="tool_box" data-comp="box" type="button" class="button toolbutton" > <i data-comp="box" class="fa fa-square-o" aria-hidden="true"></i><br />도형 </button>
+			<!--  
+			<button id="tool_hline" data-comp="hline" type="button" class="button toolbutton" > <br />HLine </button>
+			<button id="tool_vline" data-comp="vline" type="button" class="button toolbutton" > <br />VLine </button>
+			-->
+			<button id="tool_image" data-comp="image" type="button" class="button toolbutton"> <i data-comp="image" class="fa fa-picture-o" aria-hidden="true"></i><br />이미지 </button>
+			<button id="tool_text" data-comp="text" type="button" class="button toolbutton"> <i data-comp="text" class="fa fa-font" aria-hidden="true"></i><br />텍스트 </button>
+			<button id="tool_link" data-comp="link" type="button" class="button toolbutton"> <i data-comp="link" class="fa fa-link" aria-hidden="true"></i><br />링크 </button>
+			<button id="tool_list" data-comp="list" type="button" class="button toolbutton"> <i data-comp="list" class="fa fa-list-alt" aria-hidden="true"></i><br />리스트 </button>
+			<button id="tool_order" data-comp="order" type="button" class="button toolbutton"> <i data-comp="order" class="fa fa-shopping-cart" aria-hidden="true"></i><br />오더 </button>
+			<button id="tool_table" data-comp="table" type="button" class="button toolbutton"> <i data-comp="table" class="fa fa-table" aria-hidden="true"></i><br />표 </button>
+			<button id="tool_script" data-comp="script" type="button" class="button toolbutton"> <i data-comp="script" class="fa fa-code" aria-hidden="true"></i><br />SCRIPT </button>
+			<button id="tool_popup" data-comp="popup" type="button" class="button toolbutton" > <i data-comp="popup" class="fa fa-files-o" aria-hidden="true"></i><br />팝업 </button>
+			<button id="tool_listrow" style="display: none" data-comp="listrow" type="button" class="button toolbutton" > <i data-comp="listrow" class="fa fa-list-alt" aria-hidden="true"></i><br />로우 </button>
+		</div>
+	</div>
+	<!-- 내용 -->
+	
+	<div class="content_container" id="zoom-container">
+		<div class="vertical_table" id="vertical_table" style="position: absolute;">
+			<!--page container -->
+			<div id="page-container" class="vertical_cell" style="position: absolute;">
+			<!--page added -->
+			</div>
+		</div>
+	</div>
+	
+			<!-- cofig window start -->
+	<div id="element_config" class="element_config" >
+		<div class="el_title">
+			<div class="text"> 프로젝트 정보 및 설정<i class="btn_close fa fa-window-close " aria-hidden="true"></i> </div>
+				<div style ="padding:10px">
+					<div id="tabs" style ="height:430px">
+						  <ul>
+						    <li class ="tab_title"><a class ="title" href="#tabs-1">프로젝트 정보 </a></li>
+						    <li class ="tab_title"><a class ="title" href="#tabs-2">프로젝트 설정</a></li>
+						    <!--  
+						    <li class ="tab_title"><a class ="title" href="#tabs-3">에디터 설정</a></li>
+						    -->
+						    <li class ="tab_title"><a class ="title" href="#tabs-4">소프트웨어</a></li>
+						  </ul>
+						  <div id="tabs-1"> 
+						      <table class="settings_table tab_title"  id = "project_table">
+									<tbody>
+										<tr><td>&nbsp;프로젝트 번호</td><td>&nbsp;<span id ="projct_seq" ></span></td> </tr>
+										<tr><td>&nbsp;프로젝트 이름</td><td>&nbsp;<span id ="projct_name" ></span></td> </tr>
+										<tr><td>&nbsp;해상도</td> <td>&nbsp;<span id ="projct_resolve"></span> </td></tr>
+										<tr><td>&nbsp;페이지 수</td> <td>&nbsp;<span id ="projct_page_count"></span></td></tr>
+										<tr><td>&nbsp;저자 설명</td> <td>&nbsp;<span id ="project_author"></span></td></tr>
+										<tr><td>&nbsp;저자</td> <td>&nbsp;<span id ="project_author_desc"></span></td></tr>
+										<tr><td>&nbsp;프로젝트 설명</td> <td>&nbsp;<span id ="project_desc" ></span></td></tr>
+										<tr><td>&nbsp;등록일</td> <td>&nbsp;<span id ="regist_date" ></span></td></tr>
+									<tbody>
+						    </table>
+						   </div>
+						  <div id="tabs-2"> 프로젝트 동작 방식 </div>
+						    <!-- 
+						  <div id="tabs-3"> 에디터 기능 설정. </div>
+						  -->
+						  <div id="tabs-4">
+						      	<table class="settings_table tab_title"  id = "soft_table">
+									<tbody>
+										<tr><td >&nbsp;소프트웨어 </td> <td>&nbsp;<span id ="soft_name" >A3 EPUB3 Maker / Transform Engine</span></td> </tr>
+										<tr><td>&nbsp;버젼</td> <td>&nbsp;<span id ="soft_versersion" >1.0.1</span></td></tr>
+										<tr><td>&nbsp;프로토콜</td> <td>&nbsp;<span id ="soft_format" >ANEF 1.0 format</span></td></tr>
+										<tr><td>&nbsp;저작권자</td> <td>&nbsp;<span id ="soft_developer" >안영철</span> </td> </tr>
+										<tr><td>&nbsp;저작권</td> <td>&nbsp;<span id ="soft_licence"  >소프트웨어 배포 금지</span></td></tr>
+								<tbody>
+						    </table>
+						  </div>
+	  				<!--  
+					<fieldset style ="paddin:5px;border : 1px solid #999;margin-top:15px">
+					  <legend class ="title">*프로젝트 정보</legend>
+							기능을 설정할 수 있습니다.
+					 </fieldset>
+					 
+					 <fieldset style ="paddin:5px;border : 1px solid #999;margin-top:15px">
+					  <legend class ="title">*프로젝트 동작 설정</legend>
+							기능을 설정할 수 있습니다.
+					 </fieldset>
+					 
+					 <fieldset style ="paddin:5px;border : 1px solid #999;margin-top:20px">
+					  <legend class ="title">*에디터 기능 설정</legend>
+							기능을 설정할 수 있습니다.
+					 </fieldset>
+					 -->
+				</div>
+			</div>
+		</div>
+	</div>
+			<!-- cofig window start -->
+	<!-- image upload form -->
+	<form class="upload_image_frm" enctype="multipart/form-data" action="/abms/A3Maker/A3MakerApi?apiCode=10018" method="post">
+		<input style="display: none" type="file" id="attach" name="attach" accept="image/x-png,  image/jpg,  image/jpeg" /> 
+		<input type="hidden" id="abmsProjectNo" name="abmsProjectNo" /> 
+		<input type="hidden" id="data" name="data" value="" />
+	</form>
+	<!-- image upload form -->
+	
+	<!--proeprty window  -->
+	<div id="element" class="element_controller" style="position: absolute; display: none; box-shadow: 1px 1px 1px #cdcdcd;">
+		<div class="el_title"> 
+			<div class="text"></div> 
+		</div>	
+		<table style="width:100%;padding : 3px" cellspacing = "6">
+			<tbody>
+				<tr style="height: 23px;" class ="prop_elem prop_page prop_shape prop_listrow prop_image prop_text prop_link prop_list prop_order prop_table prop_popup prop_script">
+					<td style="width: 26.6196%; height: 23px;" class ="field_title">이름</td>
+					<td style="width: 79.2836%; height: 25px;" colspan="3"><input class="field_value_name" type="text" name="title" /></td>
+				</tr>
+				<tr style="height: 23px;" class ="prop_elem prop_page prop_popup">
+					<td style="width: 26.6196%; height: 23px;" class ="field_title">배경색</td>
+					<td style="width: 79.2836%; height: 25px;" colspan="3"  class="element_color_picker field_value_backcolor" style="background-color: rgb(255, 255, 255);"></td>
+				</tr>
+				<tr class ="prop_elem prop_shape prop_image prop_listrow prop_text prop_link prop_list prop_order prop_table prop_popup">
+					<td  colspan = "4" >
+						<table style="width: 100%;">
+							<tbody>
+								<tr>
+									<td style ="width:40%;height: 23px;" class ="field_title field_title_x">X</td>
+									<td style ="width:40%;height: 23px;" class ="field_title field_title_y">Y</td>
+								</tr>
+								<tr>
+									<td style ="width:40%;height: 25px;"><input class="field_value_x" type="text" name="x" /></td>
+									<td style ="width:40%;height: 25px;"><input class="field_value_y" type="text" name="y" /></td>
+								</tr>
+									<tr>
+									<td style ="width:40%;height: 23px;" class ="field_title field_title_w">W</td>
+									<td style ="width:40%;height: 23px;" class ="field_title field_title_h">H</td>
+								</tr>
+								<tr>
+									<td style ="width:40%;height: 25px;"><input class="field_value_w" type="text" name="w" /></td>
+									<td style ="width:40%;height: 25px;"><input class="field_value_h" type="text" name="h" /></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				
+		
+				
+				<tr style="height: 23px;" class ="prop_elem prop_shape prop_image prop_link">
+					<td style="width: 286196%; height: 23px;" class ="field_title">비율 고정</td>
+					<td style="width: 79.2836%; height: 23px;" colspan="3" >
+						<input class="field_value_owhyn" type="checkbox" name="oWH_YN" />
+					</td>
+				</tr>
+				
+				<tr style="height: 23px;" class ="prop_elem prop_shape prop_image prop_listrow prop_text prop_link prop_list prop_order prop_table prop_popup">
+					<td style="width: 28.6196%; height: 23px;" class ="field_title">마우스 락</td>
+					<td style="width: 79.2836%; height: 23px;" colspan="3" >
+						<input class="field_value_fixed" type="checkbox" name="fixed_YN" />
+					</td>
+				</tr>
+			
+				<!--  
+				<tr style="height: 23px;" class ="prop_elem prop_shape prop_image prop_link prop_text">
+					<td style="width: 26.6196%; height: 23px;" class ="field_title">Border</td>
+					<td style="width: 79.2836%; height: 23px;" colspan="3">
+						<div id="border_slider">  <div id="border_handle" class="ui-slider-handle slider-handle"></div></div>
+					</td>
+				</tr>
+				-->
+				
+				<tr style="height: 23px;" class ="prop_elem prop_link">
+					<td style="width: 26.6196%; height: 23px;" class ="field_title">링크</td>
+					<td style="width: 79.2836%; height: 23px;" colspan="3">
+						<div class="select-style">
+							<select class="field_value_linktype field_title" name="linktype">
+								<option value="PageLink">페이지 연결</option>
+								<!-- <option value="Media">미디어</option> -->
+								<option value="Web">웹</option>
+								<option value="YouTube">유튜브</option>
+								<option value="Map">지도</option>
+								<option value="Email">이메일</option>
+								<option value="Phonenumber">전화번호</option>
+								<option value="Popup">팝업</option>
+							</select>
+						</div>
+					</td>
+				</tr>
+				
+				<tr style="height: 23px;" class ="prop_elem prop_link">
+					<td style="width: 26.6196%; height: 23px;" class ="field_title">타겟</td>
+					<td style="width: 79.2836%; height: 23px;" colspan="3">
+						<div class="linkPageSelectDiv" style="display: block;">
+							<div class="select-style" >
+								<select class="field_value_linkpage field_title"  name="linkPageSelect">
+									<option value="">선택</option>
+								</select>
+							</div>
+						</div>
+						<div class="linkPopupSelectDiv" style="display: none;">
+							<div class="select-style">
+								<select class="field_value_linkpopup filed_title" type="text" name="linkPopupSelect">
+									<option value="">선택</option>
+								</select>
+							</div>
+						</div>
+						<input class="field_value_linkweb" type="text" name="linkPageWeb" style="display: none;" /> 
+						<input class="field_value_linkphonenumber" type="text" name="linkPagePhonenumber" style="display: none;" /> 
+						<input class="field_value_linkyoutube" type="text" name="linkYouTube" style="display: none;" /> 
+						<input class="field_value_linkmallinmall" type="text" name="linkMallInMall" style="display: none;" /> 
+						<input class="field_value_linkEmail" type="text" name="linkEmail" style="display: none;" />
+						<div class="link_map" style="display: none;">
+							<div class="field_title_lat">
+								<input class="field_value_linkmap" type="text" name="field_value_linkmap" title="address" placeholder="address" />
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr style="height: 23px;" class ="prop_elem prop_shape prop_image prop_link">
+					<td style="width: 26.6196%; height: 23px;" class ="field_title">모서리</td>
+					<td style="width: 79.2836%; height: 23px;" colspan="3">
+						<div id="radius_slider">  <div id="radius_handle" class="ui-slider-handle slider-handle"></div></div>
+					</td>
+				</tr>
+				
+				<tr style="height: 23px;" class ="prop_elem prop_text prop_link prop_list">
+					<td colspan = "4" style="padding :0px">
+						<table style="width: 100%;" cellspacing="3">
+							<tbody>
+								<tr>
+									<td style ="width:40%;height: 23px;" class ="field_title field_title_x field_title"  >폰트</td>
+									<td style ="width:40%;height: 23px;" class ="field_title field_title_y field_title" >폰트 크기</td>
+								</tr>
+								<tr>
+									<td style ="width:40%;height: 25px;">
+										<div class="fontfaceSelectDiv">
+											<div class="select-style">
+												<select class="field_value_fontface filed_title" name="fontface">
+													<option value="굴림, Gulim, Arial, sans-serif" style="font-family: 굴림, Gulim, Arial, sans-serif">굴림</option>
+													<option value="돋음, Dotum, Baekmuk Dotum, Undotum, Apple Gothic, Latin font, sans-serif" style="font-family: 돋음, Dotum, Baekmuk Dotum, Undotum, Apple Gothic, Latin font, sans-serif">돋음</option>
+													<option value="바탕, Dotum, Baekmuk Dotum, Undotum, Apple Gothic, Latin font, sans-serif" style="font-family: 바탕, 돋음, Dotum, Baekmuk Dotum, Undotum, Apple Gothic, Latin font, sans-serif">바탕</option>
+													<option value="Open Sans" style="font-family: Open Sans">Open Sans</option>
+													<option value="Arial" style="font-family: Aria">Arial</option>
+													<option value="Verdana" style="font-family: Verdana">Verdana</option>
+													<option value="Impact" style="font-family: Impact">Impact</option>
+													<option value="Comic Sans MS" style="font-family: Comic Sans MS">Comic Sans MS</option>
+													<option value="Open Sans|700" style="font-family: Open Sans; font-weight: 700;">Open Sans bold</option>
+													<option value="Amatic SC" style="font-family: Amatic SC;">Amatic SC</option>
+													<option value="Special Elite" style="font-family: Special Elite;">Special Elite</option>
+													<option value="Chelsea Market" style="font-family: Chelsea Market;">Chelsea Market</option>
+													<option value="Comfortaa" style="font-family: Comfortaa;">Comfortaa</option>
+													<option value="Comfortaa|700" style="font-family: Comfortaa; font-weight: 700;">Comfortaa bold</option>
+													<option value="Monoton" style="font-family: Monoton;">Monoton</option>
+													<option value="Shrikhand" style="font-family: Shrikhand;">Shrikhand</option>
+													<option value="Lobster" style="font-family: Lobster;">Lobster</option>
+													<option value="Abril Fatface" style="font-family: Abril Fatface;">Abril Fatface</option>
+													<option value="Anton" style="font-family: Anton;">Anton</option>
+													<option value="Gloria Hallelujah" style="font-family: Gloria Hallelujah;">Gloria Hallelujah</option>
+													<option value="Poiret One" style="font-family: Poiret One;">Poiret One</option>
+													<option value="Permanent Marker" style="font-family: Permanent Marker;">Permanent Marker</option>
+													<option value="Philosopher" style="font-family: Philosopher;">Philosopher</option>
+													<option value="Bevan" style="font-family: Bevan;">Bevan</option>
+													<option value="Nanum Pen Script" style="font-family: Nanum Pen Script;">Nanum Pen Script</option>
+													<option value="Nanum Brush Script" style="font-family: Nanum Brush Script;">Nanum Brush Script</option>
+													<option value="Nanum Gothic" style="font-family: Nanum Gothic;">Nanum Gothic</option>
+													<option value="Malgun Gothic" style="font-family: Malgun Gothic">Malgun Gothic</option>
+													<option value="Nanum Myeongjo" style="font-family: Nanum Myeongjo;">Nanum Myeongjo</option>
+													<option value="Jeju Gothic" style="font-family: Jeju Gothic;">Jeju Gothic</option>
+												</select>
+											</div>
+										</div>
+									</td>
+									<td style ="width:40%;height: 25px;">
+										<div class="sizeSelectDiv">
+											<div class="select-style">
+												<select class="field_value_size field_title" name="size">
+													<option value="9pt">9pt</option>
+													<option value="10pt">10pt</option>
+													<option value="11pt">11pt</option>
+													<option value="12pt">12pt</option>
+													<option value="13pt">13pt</option>
+													<option value="14pt">14pt</option>
+													<option value="15pt">15pt</option>
+													<option value="16pt">16pt</option>
+													<option value="17pt">17pt</option>
+													<option value="18pt">18pt</option>
+													<option value="19pt">19pt</option>
+													<option value="20pt">20pt</option>
+													<option value="21pt">21pt</option>
+													<option value="22pt">22pt</option>
+													<option value="23pt">23pt</option>
+													<option value="24pt">24pt</option>
+													<option value="25pt">25pt</option>
+													<option value="26pt">26pt</option>
+													<option value="27pt">27pt</option>
+													<option value="28pt">28pt</option>
+													<option value="29pt">29pt</option>
+													<option value="30pt">30pt</option>
+													<option value="31pt">31pt</option>
+													<option value="32pt">32pt</option>
+												</select>
+											</div>
+										</div>
+									</td>
+								</tr>
+									<tr>
+									<td style ="width:40%;height: 23px;" class ="field_title field_title_w field_title">폰트 색상</td>
+									<td style ="width:40%;height: 23px;" class ="field_title field_title_h field_title">폰트 두께</td>
+								</tr>
+								<tr>
+									<td style ="width:40%;height: 25px;" class = "element_color_picker field_value_color"></td>
+									<td style ="width:40%;height: 25px;" ></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				
+				<tr style="height: 23px;" class ="prop_elem prop_text prop_link">
+					<td style="width: 99.9032%; height: 23px;" colspan="4" class ="field_title">&nbsp;텍스트 입력</td>
+				</tr>
+				
+				<tr style="height: 5px;"  class ="prop_elem prop_text prop_link">
+					<td style="width: 99.9032%; height: 5px;" colspan="4">
+						<div class="textContentDiv">
+							<textarea class="field_value_content" style="margin: 0px; width: 96%; height: 80px;"></textarea>
+						</div>
+					</td>
+				</tr>
+				
+				<tr style="height: 23px;" class ="prop_elem prop_page prop_shape prop_image prop_link prop_list prop_order prop_popup">
+					<td colspan = "4">
+						<table style="width: 100%;" >
+							<tbody>
+								<tr>
+									<td style ="width:50%"><button class="field_title action_btn_grp_button extra-action" title="upload"  data-action="upload_image"> <i class="fa fa-upload"></i>배경</button></td>
+									<td style ="width:50%"><button class="field_title action_btn_grp_button extra-action" title="download" data-action="download_image"> <i class="fa fa-download"></i>다운로드</button></td>
+								</tr>
+								<tr>
+									<td style ="width:50%"><button class=" field_title action_btn_grp_button extra-action" title="reset image" data-action="reset image"> <i class="fa fa-times"></i>초기화</button></td>
+									<td style ="width:50%"><button class=" field_title action_btn_grp_button extra-action" title="clipart" data-action="clipart"> <i class="fa fa-paperclip"></i> 클립아트</button></td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- proeprty window end  -->
+	
+	<!--table insert layer  -->
+	<div id="table_insert_layer" class="ui_component ui_layer show" opener="menu_insert_table" row="0" col="0" style="top: 62px; left: 645px; display:none">
+		<div id="table_insert_msg"></div>
+		<div id="table_insert_layer_outer">
+			<div id="table_insert_layer_inner">
+				<div class="holder">
+					<div class="table_cell" row="1" col="1"></div>
+					<div class="table_cell" row="1" col="2"></div>
+					<div class="table_cell" row="1" col="3"></div>
+					<div class="table_cell" row="1" col="4"></div>
+					<div class="table_cell" row="1" col="5"></div>
+					<div class="table_cell" row="1" col="6"></div>
+					<div class="table_cell" row="1" col="7"></div>
+					<div class="table_cell" row="1" col="8"></div>
+					<div class="table_cell" row="1" col="9"></div>
+					<div class="table_cell" row="1" col="10"></div>
+				</div>
+				<div class="holder">
+					<div class="table_cell" row="2" col="1"></div>
+					<div class="table_cell" row="2" col="2"></div>
+					<div class="table_cell" row="2" col="3"></div>
+					<div class="table_cell" row="2" col="4"></div>
+					<div class="table_cell" row="2" col="5"></div>
+					<div class="table_cell" row="2" col="6"></div>
+					<div class="table_cell" row="2" col="7"></div>
+					<div class="table_cell" row="2" col="8"></div>
+					<div class="table_cell" row="2" col="9"></div>
+					<div class="table_cell" row="2" col="10"></div>
+				</div>
+				<div class="holder">
+					<div class="table_cell" row="3" col="1"></div>
+					<div class="table_cell" row="3" col="2"></div>
+					<div class="table_cell" row="3" col="3"></div>
+					<div class="table_cell" row="3" col="4"></div>
+					<div class="table_cell" row="3" col="5"></div>
+					<div class="table_cell" row="3" col="6"></div>
+					<div class="table_cell" row="3" col="7"></div>
+					<div class="table_cell" row="3" col="8"></div>
+					<div class="table_cell" row="3" col="9"></div>
+					<div class="table_cell" row="3" col="10"></div>
+				</div>
+				<div class="holder">
+					<div class="table_cell" row="4" col="1"></div>
+					<div class="table_cell" row="4" col="2"></div>
+					<div class="table_cell" row="4" col="3"></div>
+					<div class="table_cell" row="4" col="4"></div>
+					<div class="table_cell" row="4" col="5"></div>
+					<div class="table_cell" row="4" col="6"></div>
+					<div class="table_cell" row="4" col="7"></div>
+					<div class="table_cell" row="4" col="8"></div>
+					<div class="table_cell" row="4" col="9"></div>
+					<div class="table_cell" row="4" col="10"></div>
+				</div>
+				<div class="holder">
+					<div class="table_cell" row="5" col="1"></div>
+					<div class="table_cell" row="5" col="2"></div>
+					<div class="table_cell" row="5" col="3"></div>
+					<div class="table_cell" row="5" col="4"></div>
+					<div class="table_cell" row="5" col="5"></div>
+					<div class="table_cell" row="5" col="6"></div>
+					<div class="table_cell" row="5" col="7"></div>
+					<div class="table_cell" row="5" col="8"></div>
+					<div class="table_cell" row="5" col="9"></div>
+					<div class="table_cell" row="5" col="10"></div>
+				</div>
+				<div class="holder">
+					<div class="table_cell" row="6" col="1"></div>
+					<div class="table_cell" row="6" col="2"></div>
+					<div class="table_cell" row="6" col="3"></div>
+					<div class="table_cell" row="6" col="4"></div>
+					<div class="table_cell" row="6" col="5"></div>
+					<div class="table_cell" row="6" col="6"></div>
+					<div class="table_cell" row="6" col="7"></div>
+					<div class="table_cell" row="6" col="8"></div>
+					<div class="table_cell" row="6" col="9"></div>
+					<div class="table_cell" row="6" col="10"></div>
+				</div>
+				<div class="holder">
+					<div class="table_cell" row="7" col="1"></div>
+					<div class="table_cell" row="7" col="2"></div>
+					<div class="table_cell" row="7" col="3"></div>
+					<div class="table_cell" row="7" col="4"></div>
+					<div class="table_cell" row="7" col="5"></div>
+					<div class="table_cell" row="7" col="6"></div>
+					<div class="table_cell" row="7" col="7"></div>
+					<div class="table_cell" row="7" col="8"></div>
+					<div class="table_cell" row="7" col="9"></div>
+					<div class="table_cell" row="7" col="10"></div>
+				</div>
+				<div class="holder">
+					<div class="table_cell" row="8" col="1"></div>
+					<div class="table_cell" row="8" col="2"></div>
+					<div class="table_cell" row="8" col="3"></div>
+					<div class="table_cell" row="8" col="4"></div>
+					<div class="table_cell" row="8" col="5"></div>
+					<div class="table_cell" row="8" col="6"></div>
+					<div class="table_cell" row="8" col="7"></div>
+					<div class="table_cell" row="8" col="8"></div>
+					<div class="table_cell" row="8" col="9"></div>
+					<div class="table_cell" row="8" col="10"></div>
+				</div>
+				<div class="holder">
+					<div class="table_cell" row="9" col="1"></div>
+					<div class="table_cell" row="9" col="2"></div>
+					<div class="table_cell" row="9" col="3"></div>
+					<div class="table_cell" row="9" col="4"></div>
+					<div class="table_cell" row="9" col="5"></div>
+					<div class="table_cell" row="9" col="6"></div>
+					<div class="table_cell" row="9" col="7"></div>
+					<div class="table_cell" row="9" col="8"></div>
+					<div class="table_cell" row="9" col="9"></div>
+					<div class="table_cell" row="9" col="10"></div>
+				</div>
+				<div class="holder">
+					<div class="table_cell" row="10" col="1"></div>
+					<div class="table_cell" row="10" col="2"></div>
+					<div class="table_cell" row="10" col="3"></div>
+					<div class="table_cell" row="10" col="4"></div>
+					<div class="table_cell" row="10" col="5"></div>
+					<div class="table_cell" row="10" col="6"></div>
+					<div class="table_cell" row="10" col="7"></div>
+					<div class="table_cell" row="10" col="8"></div>
+					<div class="table_cell" row="10" col="9"></div>
+					<div class="table_cell" row="10" col="10"></div>
+				</div>
+		</div>
+	</div>
+	</div>
+	<!-- table insert layer  -->
+	
+	<!--shape window  -->
+	<div id="shape_insert_layer" class="ui_layer ui_component show" opener="menu_insert_shape" style="top: 62px; left: 593px;display : none">
+		<div id="insert_shape_layout">
+			<div class="insert_shape_group">
+				<div class="insert_shape_group_title">기본도형</div>
+					<div class="shapes">
+						<div id="shape_ellipse" title="타원" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_triangle" title="이등변 삼각형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_rtTriangle" title="직각 삼각형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_parallelogram" title="평행 사변형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_trapezoid_2007" title="사다리꼴" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_diamond" title="다이아몬드" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_pentagon" title="정오각형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_hexagon" title="육각형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_heptagon" title="칠각형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_octagon" title="팔각형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_decagon" title="십각형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_dodecagon" title="십이각형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_pie" title="원형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_chord" title="현" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_teardrop" title="눈물 방울" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_frame" title="액자" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_halfFrame" title="1/2 액자" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_corner" title="L 도형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_diagStripe" title="대각선 줄무늬" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_plus" title="십자형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_plaque" title="배지" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_can" title="원통" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_cube" title="정육면체" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_bevel" title="빗면" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_donut" title="도넛" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_noSmoking" title="없음 기호" '="" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_blockArc" title="막힌 원호" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_foldedCorner" title="모서리가 접힌 도형" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_smileyFace" title="웃는 얼굴" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_heart" title="하트" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_lightningBolt" title="번개" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_sun" title="해" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_moon" title="달" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_cloud" title="구름" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_arc" title="원호" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_bracketPair" title="양쪽 대괄호" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_bracePair" title="양쪽 중괄호" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_leftBracket" title="왼쪽 대괄호" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_rightBracket" title="오른쪽 대괄호" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_leftBrace" title="왼쪽 중괄호" class="insert_shape_layout"><div class="insert_shape"></div></div>
+						<div id="shape_rightBrace" title="오른쪽 중괄호" class="insert_shape_layout"><div class="insert_shape"></div></div>
+					</div>
+				</div>
+				<!-- <div class="insert_shape_group_line"></div> -->
+			</div>
+		</div>
+	<div id ="side_act" class ="field_title"> <span id ="side_meneu_state" >CLOSE</span> </div>
+	<div id ="code_container" style ="display:none">
+		<div id ="code_title_area">
+			<span id ="code_title"></span>
+			<span id ="code_window_ok_btn" title ="ok"><i class ="fa fa-check" aria-hidden="true"></i> </span>
+			<span id ="code_window_lose_btn" title ="close"><i class ="fa fa-close" aria-hidden="true"></i> </span>
+		</div>
+		<textarea id="code_editor" name="code" >
+		</textarea>
+	</div>
+	<div id="statusbarArea">
+		<div id="statusbarLeftArea"> 
+			<!--   
+			<span id="curPageName" class = "status_comp_type"></span>
+			<span id = "gubun">&nbsp;&nbsp; - &nbsp;&nbsp;</span>
+			-->
+			<input type ="text" id ="curPageNumber"/>
+			<span id = "gubun">/</span>
+			<span id="totalPageNumber" class="totalPageNumber"></span>
+			<span class="bar"  ></span>
+			<div id="zoom_slider" class="column ui_component ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content zoomMode">  
+				<div id="zoom_handle" class="ui-slider-handle slider-handle ui-corner-all ui-state-default"  title ="페이지 이동">0</div>
+			</div>
+			<span class="bar"  ></span>
+			<span id="curPageName" class = "status_comp_type"></span>
+			<!--   
+			<span id="totalPageNumber" class = "status_comp_type">[IMAGE]</span> 
+			-->
+		</div>
+		<!--  
+		<div id="searchArea">
+			<span id="searchLabel" class ="searchLabel">검색</span>
+			<input type ="text" id ="searchbox"/>
+		</div>
+		-->
+		<div id="statusbarRightArea">
+			<!-- 
+			<div id="normalView" class="ui_button column" title="일반 보기 (Ctrl+Shift+F)">일반 보기</div>
+			<div id="allView" class="ui_button column" title="썸네일 보기">썸네일 보기</div>
+			 -->
+			 	<div id="bottomSearchBtn"  class="column bottom_search_btn">  
+				<a class="tab_order">
+				</a>
+			</div>
+			<input type ="text"  id ="bottomSearchbox"/>
+			<div class="bar"></div>
+			<div id="slideShow"  class="ui_button column ui_component" title="슬라이드 쇼" >
+				<a class="tab_order" name="tab_order" >
+				</a>
+			</div>
+			<div class="bar"></div>
+			<!--  
+			<div id="rulerMode" class="ui_button column ui_component"  title="눈금자" >
+				<a class="tab_order"  >
+				</a>
+			</div>
+			-->
+			<div id="scaleMarkMode" class="ui_button column ui_component"  title="눈금선" >
+				<a class="tab_order" >
+				</a>
+			</div>
+			<select name="scaleMarkSize" id="scaleMarkSize" class = "column ui_component">
+		      <option value = "10" selected="selected">10</option>
+		      <option value = "20" >20</option>
+		      <option value = "30">30</option>
+		      <option value = "40">40</option>
+		      <option value = "50">50</option>
+		      <option value = "60">60</option>
+		      <option value = "70">70</option>
+		      <option value = "70">80</option>
+		      <option value = "90">90</option>
+		      <option value = "100">100</option>
+		    </select>
+			<div class="bar2"></div>
+			<div id="alignLineState"  class="ui_button column"    title="맟춤선 숨기기/보이기" > </div>
+			<div class="bar2"></div>
+			<div id="zoomAlignment"  class="ui_button column"   title="맞춤(창 크기에 맞춤)" > </div>
+			
+			<!--  
+			<div id="zoomMode" class="column">
+				<div id="zoomText" class="column">107%</div>
+				<div id="zoomSlider" class="ui_slider column ui_component" >
+					<div class="slider_btn_minus" title="축소 (Alt+-)"><a class="tab_order" >-</a></div>
+					<div class="slider_btn_plus" title="확대 (Alt++)"><a class="tab_order" name="tab_order">+</a></div>
+					<div class="slider_handle_zone"><div class="slider_handle" style="left: 33.3725px;">^</div></div>
+				</div>
+				<div id="zoomAlignment"  class="ui_button column"  title="맞춤(창 크기에 맞춤)" >
+				</div>
+			</div>
+			-->
+		</div>
+		<div id = "slide_thumbnail" style ="display:none">
+		</div>
+	</div>
+	</div>
+</body>
+</html>

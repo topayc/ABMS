@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahn.abms.dao.mapper.A3MakerDataMapper">
+	<sql id ="A3MakerDataStatement">
+		<if test="a3makerDataNo != 0"> AND a3maker_data_no = #{a3MakerDataNo} </if>
+		<if test="referenceTable != null"> AND refenece_table = #{referenceTable} </if>
+		<if test="referenceNo  != 0"> AND reference_no = #{referenceNo} </if>
+		<if test="type != null"> AND  type = #{type} </if>
+	</sql>
+	
+	<select id="getA3MakerDatas" parameterType="com.ahn.abms.model.A3MakerData"  resultType="com.ahn.abms.model.A3MakerData">
+			SELECT 
+				a3maker_data_no as a3MakerDataNo,
+				reference_table as referenceTable,
+				reference_no as referenceNo,
+				type as type,
+				data as data,
+				create_time as createTime,
+				modify_time as modifyTime
+			FROM  
+				a3maker_data
+			WHERE 
+				1 = 1
+				<include refid = "A3MakerDataStatement"/>
+	</select>
+	
+	<insert id="insertA3MakerData" parameterType="com.ahn.abms.model.A3MakerData" >
+		INSERT INTO a3maker_data(
+			reference_no,
+			type,
+			data,
+			create_time,
+			modify_time
+			)
+		VALUES (
+			  #{referenceNo},
+			  #{type},
+			  #{data},
+			  NOW(),
+			  NOW()
+		)
+		<selectKey keyProperty="a3makerDataNo" resultType="java.lang.Integer"  order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="updateA3MakerData" parameterType="com.ahn.abms.model.A3MakerData" >
+		UPDATE a3maker_data SET
+			type = #{type},
+			data = #{data},
+			modify_time = NOW()
+		WHERE a3maker_data_no = #{a3makerDataNo}
+	</update>
+	
+	<delete id="deleteA3MakerData" parameterType="com.ahn.abms.model.A3MakerData" >
+		DELETE FROM a3maker_data WHERE  1 = 1 <include refid = "A3MakerDataStatement"/>
+	</delete>
+	
+</mapper>

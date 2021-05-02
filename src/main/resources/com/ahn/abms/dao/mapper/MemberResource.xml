@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahn.abms.dao.mapper.MemberResourceMapper">
+	<sql id ="memberResourceStatement">
+		
+		<if test="memberResourceNo != 0">
+			AND  memberResourceNo = #{memberResourceNo}
+		</if>
+		
+		<if test="abmsProjectNo != 0">
+			AND  abmsProjectNo = #{abmsProjectNo}
+		</if>
+
+		<if test="memberNo != 0">
+			AND  memberNo = #{memberNo}
+		</if>
+	</sql>
+	
+	<select id="getMemberResources" parameterType="com.ahn.abms.model.MemberResource"  resultType="com.ahn.abms.model.MemberResource">
+			SELECT  * FROM MemberResource WHERE 1 = 1 <include refid = "memberResourceStatement"/>
+	</select>
+	
+	<insert id="insertMemberResource" parameterType="com.ahn.abms.model.MemberResource" >
+		INSERT INTO MemberResource(
+			abmsProjectNo,
+			memberNo,
+			orgFileName,
+			newFileName,
+			fileType,
+			fileSize,
+			localAccessPath,
+			webAccessPath,
+			createTime
+			)
+		VALUES (
+			#{abmsProjectNo},
+			#{memberNo},
+			#{orgFileName},
+			#{newFileName},
+			#{fileType},
+			#{fileSize},
+			#{localAccessPath},
+			#{webAccessPath},
+			now()
+		)
+		
+		<selectKey keyProperty="memberResourceNo" resultType="java.lang.Integer"  order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="updateMemberResource" parameterType="com.ahn.abms.model.MemberResource" >
+		UPDATE MemberResource SET
+			abmsProjectNo = #{abmsProjectNo},
+			memberNo = #{memberNo},
+			orgFileName = #{orgFileName},
+			newFileName = #{newFileName},
+			fileType = #{fileType},
+			fileSize = #{fileSize},
+			localAccessPath = #{localAccessPath},
+			webAccessPath = #{webAccessPath},
+		WHERE memberResourceNo = #{memberResourceNo}
+	</update>
+	
+	<delete id="deleteMemberResource" parameterType="com.ahn.abms.model.MemberResource" >
+		DELETE FROM MemberResource WHERE  1 = 1 <include refid = "memberResourceStatement"/>
+	</delete>
+</mapper>

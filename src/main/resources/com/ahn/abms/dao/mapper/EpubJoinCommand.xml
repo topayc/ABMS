@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahn.abms.dao.mapper.EpubJoinCommandMapper">
+	
+	<sql id ="epubJoinCommandStatement">
+		<if test="epubNo != 0"> AND E.epub_no = #{epubNo} </if>
+ 		<if test="registUserId != null"> AND  E.regist_user_id = #{registUserId} </if>
+ 		<if test="writer != null"> AND  E.writer LIKE  concat('%',#{writer},'%') </if>
+		<if test="writerDesc != null"> AND  E.writer_desc like concat('%',#{writerDesc},'%') </if>
+		<if test="epubTitle != null"> AND  E.epub_title like concat('%',#{epubTitle},'%') </if>
+		<if test="epubDesc != null"> AND  E.epub_desc LIKE  concat('%',#{epubDesc},'%')</if>
+		
+		<if test="epubFileNo != 0"> AND EF.epub_file_no = #{epubFileNo} </if>
+		<if test="orgFileName != null"> AND  EF.org_file_name = #{orgFileName} </if>
+ 		<if test="newFileName != null"> AND  EF.new_file_name = #{newFileName} </if>
+	</sql>
+	
+	<select id="getEpubJoinCommands" parameterType="com.ahn.abms.model.EpubJoinCommand"  resultType="com.ahn.abms.model.EpubJoinCommand">
+			SELECT 
+			  E.epub_no as epubNo,
+			  E.regist_user_id as registUserId,
+			  E.writer as writer,
+			  E.writer_desc as writerDesc,
+			  E.width as width,
+			  E.height as height,
+			  E.epub_title as epubTitle,
+			  E.epub_desc as epubDesc,
+			  E.epub_status as epubStatus,
+			  E.page_count as pageCount,
+			  E.file_attached as fileAttached,
+			  E.file_attached_count as fileAttachedCount,
+			  E.cover_file_org_name as coverFileOrgName,
+			  E.cover_file_new_name as coverFileNewName,
+			  E.cover_file_web as coverFileWeb,
+			 
+			  EF.epub_file_no as epubFileNo,
+			  EF.attach_order as attachOrder,
+			  EF.file_size as fileSize,
+			  EF.file_type as fileType,
+			  EF.org_file_name as orgFileName,
+			  EF.new_file_name as newFileName,
+			  E.create_time as createTime
+			FROM epub AS E
+			LEFT OUTER JOIN epub_file AS EF
+			ON E.epub_no = EF.epub_no
+			WHERE 1 = 1 <include refid = "epubJoinCommandStatement"/>
+	</select>
+</mapper>

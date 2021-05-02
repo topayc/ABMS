@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahn.abms.dao.mapper.CoResourceMapper">
+	<sql id ="coResourceStatement">
+		
+		<if test="coResourceNo != 0">
+			AND  coResourceNo = #{coResourceNo}
+		</if>
+	</sql>
+	
+	<select id="getCoResources" parameterType="com.ahn.abms.model.CoResource"  resultType="com.ahn.abms.model.CoResource">
+			SELECT  * FROM CoResource WHERE 1 = 1 <include refid = "coResourceStatement"/>
+	</select>
+	
+	<insert id="insertCoResource" parameterType="com.ahn.abms.model.CoResource" >
+		INSERT INTO CoResource(
+			orgFileName,
+			newFileName,
+			fileType,
+			fileSize,
+			localAccessPath,
+			webAccesspath,
+			createTime
+			)
+		VALUES (
+			#{orgFileName},
+			#{newFileName},
+			#{fileType},
+			#{fileSize},
+			#{localAccessPath},
+			#{webAccesspath},
+			now()
+		)
+		
+		<selectKey keyProperty="coResourceNo" resultType="java.lang.Integer"  order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="updateCoResource" parameterType="com.ahn.abms.model.CoResource" >
+		UPDATE CoResource SET
+			orgFileName = #{orgFileName},
+			newFileName = #{newFileName},
+			fileType = #{fileType},
+			fileSize = #{fileSize},
+			localAccessPath = #{localAccessPath},
+			webAccesspath = #{webAccesspath},
+		WHERE coResourceNo = #{coResourceNo}
+	</update>
+	
+	<delete id="deleteCoResource" parameterType="com.ahn.abms.model.CoResource" >
+		DELETE FROM CoResource WHERE  1 = 1 <include refid = "coResourceStatement"/>
+	</delete>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahn.abms.dao.mapper.AbmsProjectJoinCommandMapper">
+	
+	<sql id ="abmsProjectJoinCommandStatement">
+		<if test="abmsProjectNo != 0"> AND AP.abmsProjectNo = #{abmsProjectNo} </if>
+ 		<if test="memberId != null"> AND  M.memberId = #{memerId} </if>
+ 		<if test="writer != null"> AND  AP.writer LIKE  concat('%',#{writer},'%') </if>
+		<if test="writerDesc != null"> AND  AP.writer_desc like concat('%',#{writerDesc},'%') </if>
+		<if test="projectTitle != null"> AND  AP.projectTitle like concat('%',#{projectTitle},'%') </if>
+		<if test="projectDesc != null"> AND  AP.proejctDesc LIKE  concat('%',#{projectDesc},'%')</if>
+	</sql>
+	
+	<select id="getAbmsProjectJoinCommands" parameterType="com.ahn.abms.model.AbmsProjectJoinCommand"  resultType="com.ahn.abms.model.AbmsProjectJoinCommand">
+			SELECT 
+			  AP.abmsProjectNo as abmsProjectNo,
+			  AP.writer as writer,
+			  AP.writerDesc as writerDesc,
+			  AP.projectTitle as projectTitle,
+			  AP.projectDesc as projectDesc,
+			  AP.projectWidth as projectWidth,
+			  AP.projectHeight as projectHeight,
+			  AP.projectStatus as projectStatus,
+			  AP.publicStatus as publicStatus,
+			  AP.pageCount as pageCount,
+			  AP.coverFileOrgName as coverFileOrgName,
+			  AP.coverFileNewName as coverFileNewName,
+			  AP.coverFileWebPath coverFileWebPath,
+			  AP.coverFileLocalPath coverFileLocalPath,
+			  AP.createTime as createTime,
+			  
+			  M.memberId as memberId,
+			  M.memberName as memberName,
+			  M.memberType as memberType,
+			  M.memberPassword as memberPassword,
+			  
+			  TAF.transformAttachFileNo as transformAttachFileNo,
+			  TAF.attachFileOrgName as attachFileOrgName,
+			  TAF.attachFileNewName as attachFileNewName,
+			  TAF.fileType as fileType,
+			  TAF.fileSize as fileSize,
+			  TAF.attachFileLocalPath as attachFileLocalPath,
+			  TAF.attachFileWebPath as attachFileWebPath
+			  
+			FROM AbmsProject AS AP
+			INNER JOIN Member as M 
+				ON AP.memberNo = M.memberNo
+			LEFT OUTER JOIN TransformAttachFile AS TAF 
+				ON AP.abmsProjectNo = TAF.abmsProjectNo
+			WHERE 1 = 1 <include refid = "abmsProjectJoinCommandStatement"/>
+	</select>
+</mapper>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahn.abms.dao.mapper.EpubMapper">
+	<sql id ="epubStatement">
+		<if test="epubNo != 0"> AND epub_no = #{epubNo} </if>
+		<if test="registUserId != null"> AND  regist_user_id = #{registUserId} </if>
+ 		<if test="writer != null"> AND  writer = #{writer} </if>
+		<if test="writerDesc != null"> AND  writer_desc like concat('%',#{writerDesc},'%') </if>
+		<if test="epubTitle != null"> AND  epub_title like concat('%',#{epubTitle},'%') </if>
+		<if test="epubDesc != null"> AND  epub_desc LIKE  concat('%',#{epubDesc},'%')</if>
+	</sql>
+	
+	<select id="getEpubs" parameterType="com.ahn.abms.model.Epub"  resultType="com.ahn.abms.model.Epub">
+			SELECT 
+			  epub_no as epubNo,
+			  regist_user_id as registUserId,
+			  writer as writer,
+			  writer_desc as writerDesc,
+			  width as width,
+			  height as height,
+			  epub_title as epubTitle,
+			  epub_desc as epubDesc,
+			  epub_status as epubStatus,
+			  page_count as pageCount,
+			  file_attached as fileAttached,
+			  file_attached_count as fileAttachedCount,
+			  cover_file_org_name as coverFileOrgName,
+			  cover_file_new_name as coverFileNewName,
+			  cover_file_web as coverFileWeb,
+			  create_time as createTime,
+			  modify_time as modifyTime
+			FROM  
+				epub
+			WHERE 
+				1 = 1
+				<include refid = "epubStatement"/>
+	</select>
+	
+	<insert id="insertEpub" parameterType="com.ahn.abms.model.Epub" >
+		INSERT INTO epub(
+			regist_user_id,
+			width,
+			height,
+			writer,
+			writer_desc,
+			epub_title,
+			epub_desc,
+			epub_status,
+			page_count,
+		    file_attached,
+			file_attached_count,
+			cover_file_org_name,
+			cover_file_new_name,
+			cover_file_web,
+			create_time,
+			modify_time
+			)
+		VALUES (
+			#{registUserId},
+			#{width},
+			#{height},
+			#{writer},
+			#{writerDesc},
+			#{epubTitle},
+			#{epubDesc},
+			#{epubStatus},
+			#{pageCount},
+			#{fileAttached},
+			#{fileAttachedCount},
+			#{coverFileOrgName},
+			#{coverFileNewName},
+			#{coverFileWeb},
+			now(),
+			now()
+		)
+		
+		<selectKey keyProperty="epubNo" resultType="java.lang.Integer"  order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="updateEpub" parameterType="com.ahn.abms.model.Epub" >
+		UPDATE epub SET
+			regist_user_id = #{registUserId},
+			width = #{width},
+			height = #{height},
+			writer = #{writer},
+			writer_desc = #{writerDesc},
+			epub_status = #{epubStatus},
+			file_attached = #{fileAttached},
+			file_attached_count = #{fileAttachedCount},
+			epub_title = #{epubTitle},
+			epub_desc = #{epubDesc},
+			page_count = #{pageCount},
+			cover_file_org_name = #{coverFileOrgName},
+			cover_file_new_name = #{coverFileNewName},
+			cover_file_web = #{coverFileWeb},
+			modify_time = now()
+			WHERE epub_no = #{epubNo}
+	</update>
+	
+	<delete id="deleteEpub" parameterType="com.ahn.abms.model.Epub" >
+		DELETE FROM epub WHERE  1 = 1 <include refid = "epubStatement"/>
+	</delete>
+</mapper>

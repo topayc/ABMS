@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahn.abms.dao.mapper.UserMapper">
+	<sql id ="userStatement">
+		
+		<if test="userNo != 0">
+			AND  user_no = #{userNo}
+		</if>
+		
+		<if test="userId != null">
+			AND  user_id = #{userId}
+		</if>
+
+		<if test="userPassword != null">
+			AND  user_password = #{userPassword}
+		</if>
+		
+		
+		<if test="userName != null">
+			AND  user_name = #{userName}
+		</if>
+		
+		<if test="userType != null">
+			AND  user_type = #{userType}
+		</if>
+	</sql>
+	
+	<select id="getUsers" parameterType="com.ahn.abms.model.User"  resultType="com.ahn.abms.model.User">
+			SELECT 
+			  user_no as userNo,
+			  user_id as userId,
+			  user_name as userName,
+			  user_password as userPassword,
+			  user_type as userType,
+			  create_time as createTime
+			FROM 
+				user
+			WHERE 
+				1 = 1
+				<include refid = "userStatement"/>
+	</select>
+	
+	<insert id="insertUser" parameterType="com.ahn.abms.model.User" >
+		INSERT INTO user(
+			user_id,
+			user_name,
+			user_password,
+			user_type,
+			create_time
+			)
+		VALUES (
+			#{userId},
+			#{userName},
+			#{userPassword},
+			#{userType},
+			now()
+		)
+		
+		<selectKey keyProperty="userNo" resultType="java.lang.Integer"  order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="updateUser" parameterType="com.ahn.abms.model.User" >
+		UPDATE user SET
+			user_id = #{userId},
+			user_type = #{userType},
+			user_name = #{userName},
+			user_password = #{userPassword}
+		WHERE user_no = #{userNo}
+	</update>
+	
+	<delete id="deleteUser" parameterType="com.ahn.abms.model.User" >
+		DELETE FROM user WHERE  1 = 1 <include refid = "userStatement"/>
+	</delete>
+</mapper>

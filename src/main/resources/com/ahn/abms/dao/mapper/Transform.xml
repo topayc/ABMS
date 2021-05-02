@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahn.abms.dao.mapper.TransformMapper">
+	<sql id ="transformStatement">
+		
+		<if test="transformNo != 0">
+			AND  transformNo = #{transformNo}
+		</if>
+		
+		<if test="abmsProjectNo != 0">
+			AND  abmsProjectNo = #{abmsProjectNo}
+		</if>
+		
+		<if test="transformType != null">
+			AND  transformType = #{transformType}
+		</if>
+	</sql>
+	
+	<select id="getTransforms" parameterType="com.ahn.abms.model.Transform"  resultType="com.ahn.abms.model.Transform">
+			SELECT  * FROM Transform  WHERE 1 = 1 <include refid = "transformStatement"/>
+	</select>
+	
+	<insert id="insertTransform" parameterType="com.ahn.abms.model.Transform" >
+		INSERT INTO Transform(
+			transformNo,
+			abmsProjectNo,
+			trasnformType,
+			createTime
+			)
+		VALUES (
+			#{transformNo},
+			#{abmsProjectNo},
+			#{trasnformType},
+			now()
+		)
+		
+		<selectKey keyProperty="transformNo" resultType="java.lang.Integer"  order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="updateTransform" parameterType="com.ahn.abms.model.Transform" >
+		UPDATE Transform SET
+			transforrmNo = #{transforrmNo},
+			abmsProjectNo = #{abmsProjectNo},
+			transformType = #{transformType}
+		WHERE transformNo = #{transformNo}
+	</update>
+	
+	<delete id="deleteTransform" parameterType="com.ahn.abms.model.Transform" >
+		DELETE FROM Transform WHERE  1 = 1 <include refid = "transformStatement"/>
+	</delete>
+</mapper>

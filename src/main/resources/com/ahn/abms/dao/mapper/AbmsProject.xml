@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahn.abms.dao.mapper.AbmsProjectMapper">
+	<sql id ="abmsProjectStatement">
+		
+		<if test="abmsProjectNo != 0">
+			AND  abmsProjectNo = #{abmsProjectNo}
+		</if>
+		
+		<if test="memberNo != 0">
+			AND  memberNo = #{memberNo}
+		</if>
+
+		<if test="writer != null">
+			AND  writer = #{writer}
+		</if>
+		
+		
+		<if test="projectTitle != null">
+			AND  projectTitle = #{projectTitle}
+		</if>
+	</sql>
+	
+	<select id="getAbmsProjects" parameterType="com.ahn.abms.model.AbmsProject"  resultType="com.ahn.abms.model.AbmsProject">
+			SELECT  * FROM AbmsProject WHERE 1 = 1 <include refid = "abmsProjectStatement"/>
+	</select>
+	
+	<insert id="insertAbmsProject" parameterType="com.ahn.abms.model.AbmsProject" >
+		INSERT INTO AbmsProject(
+			memberNo,
+			writer,
+			writerDesc,
+			projectTitle,
+			projectWidth,
+			projectHeight,
+			projectDesc,
+			projectStatus,
+			publicStatus,
+			coverFileOrgName,
+			coverFileNewName,
+			coverFileWebPath,
+			coverFileLocalPath,
+			pageCount,
+			createTime,
+			modifyTime
+			
+			)
+		VALUES (
+			#{memberNo},
+			#{writer},
+			#{writerDesc},
+			#{projectTitle},
+			#{projectWidth},
+			#{projectHeight},
+			#{projectDesc},
+			#{projectStatus},
+			#{publicStatus},
+			#{coverFileOrgName},
+			#{coverFileNewName},
+			#{coverFileWebPath},
+			#{coverFileLocalPath},
+			#{pageCount},
+			now(),
+			now()
+		)
+		
+		<selectKey keyProperty="abmsProjectNo" resultType="java.lang.Integer"  order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="updateAbmsProject" parameterType="com.ahn.abms.model.AbmsProject" >
+		UPDATE AbmsProject SET
+				memberNo = #{memberNo},
+				writer = #{writer},
+				writerDesc = #{writerDesc},
+				projectTitle = #{projectTitle},
+				projectWidth = #{projectWidth},
+				projectHeight = #{projectHeight},
+				projectDesc = #{projectDesc},
+				projectStatus = #{projectStatus},
+				publicStatus = #{publicStatus},
+				coverFileNewName = #{coverFileNewName},
+				coverFileOrgName = #{coverFileOrgName},
+				coverFileWebPath = #{coverFileWebPath},
+				coverFileLocalPath = #{coverFileLocalPath},
+				pageCount = #{pageCount},
+				modifyTime = now()
+		WHERE abmsProjectNo = #{abmsProjectNo}
+	</update>
+	
+	<delete id="deleteAbmsProject" parameterType="com.ahn.abms.model.AbmsProject" >
+		DELETE FROM AbmsProject WHERE  1 = 1 <include refid = "abmsProjectStatement"/>
+	</delete>
+</mapper>

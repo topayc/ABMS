@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahn.abms.dao.mapper.EditorDataMapper">
+	<sql id ="editorDataStatement">
+		
+		<if test="editorDataNo != 0">
+			AND  editorDataNo = #{editorDataNo}
+		</if>
+		
+		<if test="abmsProjectNo != null">
+			AND  abmsProjectNo = #{abmsProjectNo}
+		</if>
+	</sql>
+	
+	<select id="getEditorDatas" parameterType="com.ahn.abms.model.EditorData"  resultType="com.ahn.abms.model.EditorData">
+			SELECT  * FROM EditorData WHERE 1 = 1 <include refid = "editorDataStatement"/>
+	</select>
+	
+	<insert id="insertEditorData" parameterType="com.ahn.abms.model.EditorData" >
+		INSERT INTO EditorData(
+			abmsProjectNo,
+			data,
+			type,
+			createTime,
+			modifyTime
+			)
+		VALUES (
+			#{abmsProjectNo},
+			#{data},
+			#{type},
+			now(),
+			now()
+		)
+		
+		<selectKey keyProperty="editorDataNo" resultType="java.lang.Integer"  order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="updateEditorData" parameterType="com.ahn.abms.model.EditorData" >
+		UPDATE EditorData SET
+				abmsProjectNo = #{abmsProjectNo},
+				data = #{data},
+				type = #{type},
+				modifyTime = now()
+		WHERE editorDataNo = #{editorDataNo}
+	</update>
+	
+	<delete id="deleteEditorData" parameterType="com.ahn.abms.model.EditorData" >
+		DELETE FROM EditorData WHERE  1 = 1 <include refid = "editorDataStatement"/>
+	</delete>
+</mapper>

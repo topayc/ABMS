@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahn.abms.dao.mapper.EpubFileMapper">
+	<sql id ="epubFileStatement">
+		<if test="epubFileNo != 0"> AND epub_detail_no = #{epub_detail_no} </if>
+		<if test="epubNo != 0"> AND epub_no = #{epubNo} </if>
+		<if test="fileType != 0"> AND fie_type= #{fileType} </if>
+		<if test="orgFileName != null"> AND  org_file_name = #{orgFileName} </if>
+ 		<if test="newFileName != null"> AND  new_file_name = #{newFileName} </if>
+	</sql>
+	
+	<select id="getEpubFiles" parameterType="com.ahn.abms.model.EpubFile"  resultType="com.ahn.abms.model.EpubFile">
+			SELECT 
+			  epub_filel_no as epubFileNo,
+			  epub_no as epubNo,
+			  file_size as fileSize,
+			  file_type as fileType,
+			  attach_order as attachOrder,
+			  org_file_name as orgFileName,
+			  new_file_name as newFileName,
+			  local_path as localPath,
+			  web_path as webPath,
+			  create_time as createTime
+			FROM  
+				epub_file
+			WHERE 
+				1 = 1
+				<include refid = "epubFileStatement"/>
+	</select>
+	
+	<insert id="insertEpubFile" parameterType="com.ahn.abms.model.EpubFile" >
+		INSERT INTO epub_file(
+			regist_user_id,
+		epub_filel_no as epubFileNo,
+			  epub_no,
+			  file_size,
+			  file_type,
+			  attach_order,
+			  org_file_name,
+			  new_file_name,
+			  local_path,
+			  web_path,
+			  create_time
+			)
+		VALUES (
+			  #{epubNo},
+			  #{fileSize},
+			  #{fileType},
+			  #{attachOrder},
+			  #{orgFileName},
+			  #{newFileName},
+			  #{localPath},
+			  #{webPath},
+			  NOW()
+		)
+	</insert>
+	
+	<update id="updateEpubFile" parameterType="com.ahn.abms.model.EpubFile" >
+		UPDATE epub_file SET
+			 epub_no = #{epubNo},
+			 file_size = #{fileSize},
+			 file_type = #{fileType},
+			 attach_order = #{attachOrder},
+			 org_file_name = #{orgFileName},
+			 new_file_name = #{newFileName},
+			 local_path = #{localPath},
+			 web_path = #{webPath}
+		WHERE epub_file_no = #{epub_file_no}
+	</update>
+	
+	<delete id="deleteEpubFile" parameterType="com.ahn.abms.model.EpubFile" >
+		DELETE FROM epub_file WHERE  1 = 1 <include refid = "epubFileStatement"/>
+	</delete>
+	
+</mapper>

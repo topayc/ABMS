@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahn.abms.dao.mapper.TransformAttachFileMapper">
+	<sql id ="transformAttachFileStatement">
+		
+		<if test="transformAttachFileNo != 0">
+			AND  transformAttachFileNo = #{transformAttachFileNo}
+		</if>
+		
+		<if test="abmsProjectNo != null">
+			AND  abmsProjectNo = #{abmsProjectNo}
+		</if>
+	</sql>
+	
+	<select id="getTransformAttachFiles" parameterType="com.ahn.abms.model.TransformAttachFile"  resultType="com.ahn.abms.model.TransformAttachFile">
+			SELECT  * FROM TransformAttachFile WHERE 1 = 1 <include refid = "transformAttachFileStatement"/>
+	</select>
+	
+	<insert id="insertTransformAttachFile" parameterType="com.ahn.abms.model.TransformAttachFile" >
+		INSERT INTO TransformAttachFile(
+			abmsProjectNo,
+			attachFileOrgName,
+			attachFileNewName,
+			fileType,
+			fileSize,
+			attachFileLocalPath,
+			attachFileWebPath,
+			createTime
+			)
+		VALUES (
+			#{abmsProjectNo},
+			#{attachFileOrgName},
+			#{attachFileNewName},
+			#{fileType},
+			#{fileSize},
+			#{attachFileLocalPath},
+			#{attachFileWebPath},
+			now()
+		)
+		
+		<selectKey keyProperty="transformAttachFileNo" resultType="java.lang.Integer"  order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<update id="updateTransformAttachFile" parameterType="com.ahn.abms.model.TransformAttachFile" >
+		UPDATE TransformAttachFile SET
+			abmsProjectNo = #{abmsProjectNo},
+			attachFileOrgName = #{attachFileOrgName},
+			attachFileNewName = #{attachFileNewName},
+			fileType = #{fileType},
+			fileSize = #{fileSize},
+			attachFileLocalPath = #{attachFileLocalPath},
+			attachFileWebPath = #{attachFileWebPath},
+		WHERE transformAttachFileNo = #{transformAttachFileNo}
+	</update>
+	
+	<delete id="deleteTransformAttachFile" parameterType="com.ahn.abms.model.TransformAttachFile" >
+		DELETE FROM TransformAttachFile WHERE  1 = 1 <include refid = "transformAttachFileStatement"/>
+	</delete>
+</mapper>
